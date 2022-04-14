@@ -1,20 +1,15 @@
-package Ciphering;
+package ciphering;
 import java.util.Random;
 
-public class CesarCipher extends Cipher{
+public class CaesarCipher extends Cipher{
     private int key;
 
-    public CesarCipher() {
-        super();
-        setKey();
-    }
-
-    public CesarCipher(String text) {
+    public CaesarCipher(String text) {
         super(text);
         setKey();
     }
 
-    public void setKey() {
+    void setKey() {
         Random r = new Random();
         this.key = r.nextInt(25)+1;
     }
@@ -24,18 +19,14 @@ public class CesarCipher extends Cipher{
     }
 
     public String processText(int key) {
-        String alphaLC = "abcdefghijklmnoprstuwxyz";
-        String alphaUC = "ABCDEFGHIJKLMNOPRSTUWXYZ";
-        String alpha = "";
+        final String alphaLC = "abcdefghijklmnoprstuwxyz";
+        final String alphaUC = "ABCDEFGHIJKLMNOPRSTUWXYZ";
+        String alpha;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.text.length(); ++i) {
             char ch = this.text.charAt(i);
             if(Character.isAlphabetic(ch)){
-                if(Character.isUpperCase(ch) && !alpha.equals(alphaUC)){
-                    alpha = alphaUC;
-                }else{
-                    alpha = alphaLC;
-                }
+                alpha = Character.isUpperCase(ch) ? alphaUC : alphaLC;
                 int j = alpha.indexOf(ch);
                 j = (j + key + alpha.length()) % alpha.length();
                 sb.append(alpha.charAt(j));
