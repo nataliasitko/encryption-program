@@ -19,14 +19,18 @@ public class CaesarCipher extends Cipher{
     }
 
     public String processText(int key) {
-        final String alphaLC = "abcdefghijklmnoprstuwxyz";
-        final String alphaUC = "ABCDEFGHIJKLMNOPRSTUWXYZ";
-        String alpha;
+        String alphaLC = "abcdefghijklmnoprstuwxyz";
+        String alphaUC = "ABCDEFGHIJKLMNOPRSTUWXYZ";
+        String alpha = "";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.text.length(); ++i) {
             char ch = this.text.charAt(i);
             if(Character.isAlphabetic(ch)){
-                alpha = Character.isUpperCase(ch) ? alphaUC : alphaLC;
+                if(Character.isUpperCase(ch)) {
+                    alpha = alphaUC;
+                }else{
+                    alpha = alphaLC;
+                }
                 int j = alpha.indexOf(ch);
                 j = (j + key + alpha.length()) % alpha.length();
                 sb.append(alpha.charAt(j));
