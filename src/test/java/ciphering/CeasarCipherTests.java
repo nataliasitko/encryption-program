@@ -1,6 +1,7 @@
+package ciphering;
+
 import ciphering.CaesarCipher;
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CeasarCipherTests {
@@ -9,35 +10,31 @@ public class CeasarCipherTests {
     @Test
     void itShouldEncryptAlphabeticLowerCaseString(){
         //given
-        String input = "abcde";
-        underTest = new CaesarCipher(input);
+        String input = "x";
+        int key = 5;
+        underTest = new CaesarCipher(input, key);
 
         //when
-        String result = underTest.encrypt();
+        String actual = underTest.encrypt();
 
         //then
-        for(int i = 0; i < input.length() - 1; i++){
-            int difference = result.charAt(i)-input.charAt(i);
-            int nextDifference = result.charAt(i+1)-input.charAt(i+1);
-            assertThat(difference).isEqualTo(nextDifference);
-        }
+        String expected = "c";
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     void itShouldEncryptAlphabeticUpperCaseString(){
         //given
-        String input = "ABCDE";
-        underTest = new CaesarCipher(input);
+        String input = "X";
+        int key = 5;
+        underTest = new CaesarCipher(input, key);
 
         //when
-        String result = underTest.encrypt();
+        String actual = underTest.encrypt();
 
         //then
-        for(int i = 0; i < input.length() - 1; i++){
-            int difference = result.charAt(i)-input.charAt(i);
-            int nextDifference = result.charAt(i+1)-input.charAt(i+1);
-            assertThat(difference).isEqualTo(nextDifference);
-        }
+        String expected = "C";
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -57,6 +54,19 @@ public class CeasarCipherTests {
     void itShouldNotEncryptSpaces(){
         //given
         String input = " ";
+        underTest = new CaesarCipher(input);
+
+        //when
+        String result = underTest.encrypt();
+
+        //then
+        assertThat(input).isEqualTo(result);
+    }
+
+    @Test
+    void itShouldNotEncryptDigits(){
+        //given
+        String input = "12345";
         underTest = new CaesarCipher(input);
 
         //when
