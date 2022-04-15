@@ -3,6 +3,7 @@ package ciphering;
 import ciphering.CaesarCipher;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class CeasarCipherTests {
     CaesarCipher underTest;
@@ -74,5 +75,17 @@ public class CeasarCipherTests {
 
         //then
         assertThat(input).isEqualTo(result);
+    }
+
+    @Test
+    void willThrowWhenTextIsNull(){
+        //given
+        String input = null;
+
+        //when
+        //then
+        assertThatThrownBy(() -> underTest = new CaesarCipher(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Text cannot be null.");
     }
 }
