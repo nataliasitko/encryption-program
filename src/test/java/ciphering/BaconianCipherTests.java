@@ -62,4 +62,5 @@ public class BaconianCipherTests {
         String expected = "+-7%";
         assertThat(result).isEqualTo(expected);
     }
+
 }
