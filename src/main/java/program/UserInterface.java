@@ -1,6 +1,6 @@
-package Program;
+package program;
 
-import Ciphering.Cipher;
+import ciphering.Cipher;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -20,11 +20,12 @@ public class UserInterface {
             if (command.equals("X")) {
                 break;
             }
+            System.out.println("Your message:");
             String text = scanner.nextLine();
             this.cipher = CipheringMethod.getCipheringMethod(command, text);
             if(this.cipher != null){
                 System.out.println("Encrypted:");
-                System.out.println(cipher.encrypt());
+                System.out.println(this.cipher.encrypt());
                 System.out.println();
             }
         }
@@ -34,8 +35,7 @@ public class UserInterface {
         System.out.println("Chose a ciphering method:");
         System.out.println(" 1 - Cesar Cipher");
         System.out.println(" 2 - Rail Fence Cipher");
-        System.out.println(" 3 - --");
+        System.out.println(" 3 - Baconian Cipher");
         System.out.println(" X - stop");
-        System.out.println("Your message:");
     }
 }
