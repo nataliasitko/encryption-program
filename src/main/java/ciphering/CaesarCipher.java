@@ -9,9 +9,22 @@ public class CaesarCipher extends Cipher{
         setKey();
     }
 
+    public CaesarCipher(String text, int key) {
+        super(text);
+        setKey(key);
+    }
+
     void setKey() {
         Random r = new Random();
         this.key = r.nextInt(25)+1;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public int getKey(){
+        return this.key;
     }
 
     public String encrypt(){
@@ -21,7 +34,7 @@ public class CaesarCipher extends Cipher{
     public String processText(int key) {
         String alphaLC = "abcdefghijklmnoprstuwxyz";
         String alphaUC = "ABCDEFGHIJKLMNOPRSTUWXYZ";
-        String alpha = "";
+        String alpha;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.text.length(); ++i) {
             char ch = this.text.charAt(i);
