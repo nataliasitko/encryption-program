@@ -1,17 +1,15 @@
-package Ciphering;
+package ciphering;
 
 public abstract class Cipher {
     protected String text;
-
-    public Cipher(){
-        this.text = "";
-    }
+    protected StringBuilder sb;
 
     public Cipher(String text){
         setText(text);
+        this.sb = new StringBuilder();
     }
 
-    public void setText(String text) {
+    private void setText(String text) {
         if(text != null){
             this.text = text;
         }else{
@@ -19,7 +17,6 @@ public abstract class Cipher {
         }
     }
 
-    public abstract void setKey();
     public abstract String encrypt();
 
 }
